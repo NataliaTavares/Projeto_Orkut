@@ -10,7 +10,7 @@ import BoxOpcao from '../src/components/Box/opcao';
 
 
 
-export default function sobre_nos(props) {
+export default function comunidades(props) {
   const usuarioAleatorio = props.githubUser;
   const [comunidades, setComunidades] = React.useState([]);
 

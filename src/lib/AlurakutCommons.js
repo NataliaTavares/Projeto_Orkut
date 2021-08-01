@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import NextLink from 'next/link';
-import {usuarioAleatorio} from '/pages/index.js';
+
  
 
 
@@ -177,7 +177,7 @@ function AlurakutMenuProfileSidebar({ githubUser }) {
         <img src={`https://github.com/${githubUser}.png`} style={{ borderRadius: '8px' }} />
         <hr />
         <p>
-          <a  className="boxLink" href={`/user/${githubUser}`} >
+          <a  className="boxLink" href={`https://github.com/${githubUser}`} >
             @{githubUser}
           </a>
         </p>
@@ -196,6 +196,10 @@ export function AlurakutProfileSidebarMenuDefault({githubUser}) {
   return (
     <AlurakutProfileSidebarMenuDefault.Wrapper >
       <nav>
+        <a href="/">
+          <img src={`${BASE_URL}/icons/book.svg`} />
+            Inicio
+        </a>
         <a href='/perfil' target="_blank">
           <img src={`${BASE_URL}/icons/user.svg`} />
             Perfil

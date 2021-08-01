@@ -9,6 +9,32 @@ export const ProfileRelationsBoxWrapperOpcao = styled(Box)`
     max-height: 220px;
     list-style: none;
   }
+  @media(min-width: 860px){
+    ul{
+      grid-template-columns: 100px 100px 100px 100px 100px
+    }  
+  }
+  @media(min-width: 540px) and (max-width:859px) {
+    ul{
+      grid-template-columns: 90px 90px 90px 90px 
+    } 
+  }
+  @media(min-width: 321px) and (max-width: 539px){
+    ul{
+      grid-template-columns: 80px 80px 80px
+    }   
+  }
+  @media (min-width: 286px) and (max-width: 320px){
+    ul{
+      grid-template-columns: 65px 65px 65px
+    }  
+  }
+  @media(max-width: 285px){
+    ul{
+      grid-template-columns: 50px 50px 50px
+    }  
+  }
+
   img {
     object-fit: cover;
     background-position: center center;

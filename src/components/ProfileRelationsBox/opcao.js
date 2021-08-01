@@ -11,7 +11,7 @@ function ProfileRelationsBoxOpcao(props) {
             return (
               <li key={item.id}>
                 <a href={`${item.category}${item.name}`} target="_blank">   
-                  <img src={item.imageUrl} />
+                  <img src={item.imageUrl}/>
                   <span>{item.name}</span>
                 </a>
               </li>
