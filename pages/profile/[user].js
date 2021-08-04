@@ -1,20 +1,18 @@
 import React from 'react';
+import { useRouter } from "next/router";
 import nookies from 'nookies';
 import jwt from 'jsonwebtoken';
-import MainGrid from '../src/components/MainGrid'
-import ProfileSidebar from '../src/components/ProfileSidebar'
-import Box from '../src/components/Box'
-import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons';
-import ProfileRelationsBox from "../src/components/ProfileRelationsBox/index";
-import ProfileBio from "../src/components/ProfileBio";
-import GitHubService from "../src/api/githubService";
-import DatoCMSService from "../src/api/datocmsService";
-import ScrapsBox from "../src/components/boxRecados";
-import ScrapsList from "../src/components/listaRecados";
-import BoxLink from "../src/components/boxLink";
-import ProfileRelationsBoxLink from '../src/components/ProfileRelationsBox/profileLinkComunidade';
-
-
+import MainGrid from '../../src/components/MainGrid'
+import ProfileSidebar from '../../src/components/ProfileSidebar'
+import Box from '../../src/components/Box'
+import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../../src/lib/AlurakutCommons';
+import ProfileRelationsBox from "../../src/components/ProfileRelationsBox";
+import ProfileBio from "../../src/components/ProfileBio";
+import GitHubService from "../../src/api/githubService";
+import DatoCMSService from "../../src/api/datocmsService";
+import ScrapsBox from "../../src/components/boxRecados";
+import ScrapsList from "../../src/components/listaRecados";
+import BoxLink from "../../src/components/boxLink";
 
 const ICONS_SETUP = {
   recados: 5,
@@ -23,9 +21,10 @@ const ICONS_SETUP = {
   sexy: 2
 };
 
-
-export default function Home(props) {
-  const usuarioAleatorio = props.githubUser;
+export default function ProfilePage() {
+  const router = useRouter();
+  const { user } = router.query;
+  const githubUser = user;
   const [username, setUsername] = React.useState([]);
   const [comunidades, setComunidades] = React.useState([]);
   const [seguidores, setSeguidores] = React.useState([]);
@@ -35,12 +34,12 @@ export default function Home(props) {
   
   React.useEffect(function() {
     // GET
-    GitHubService.getUsername(usuarioAleatorio).then((data) => {
+    GitHubService.getUsername(githubUser).then((data) => {
       const loggedUsername = data;
       setUsername(loggedUsername);
     });
 
-    fetch(`https://api.github.com/users/${usuarioAleatorio}/followers`)
+    fetch(`https://api.github.com/users/${githubUser}/followers`)
       .then((response) => response.json())
       .then(function (finalResult) {
         const seguidoresMap = finalResult.map(({ id, login, avatar_url }) => ({
@@ -53,7 +52,7 @@ export default function Home(props) {
         return setSeguidores(seguidoresMap);
       });
 
-    fetch(`https://api.github.com/users/${usuarioAleatorio}/following`)
+    fetch(`https://api.github.com/users/${githubUser}/following`)
       .then((response) => response.json())
       .then(function (finalResult) {
         const seguindoMap = finalResult.map(({ id, login, avatar_url }) => ({
@@ -79,7 +78,6 @@ export default function Home(props) {
           id 
           title
           imageUrl
-          link
           creatorSlug
         }
       }` })
@@ -101,11 +99,11 @@ export default function Home(props) {
 
   return (
     <>
-      <AlurakutMenu githubUser={usuarioAleatorio} />
+      <AlurakutMenu githubUser={githubUser} />
       <MainGrid>
         {/* <Box style="grid-area: profileArea;"> */}
         <div className="profileArea" style={{ gridArea: 'profileArea' }}>
-          <ProfileSidebar githubUser={usuarioAleatorio} />
+          <ProfileSidebar githubUser={githubUser} />
         </div>
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
           <Box>
@@ -130,8 +128,7 @@ export default function Home(props) {
                 const comunidade = {
                   title: dadosDoForm.get('title'),
                   imageUrl: dadosDoForm.get('image'),
-                  link: dadosDoForm.get("link"),
-                  creatorSlug: usuarioAleatorio,
+                  creatorSlug: githubUser,
                 }
 
                 fetch('/api/comunidades', {
@@ -164,14 +161,6 @@ export default function Home(props) {
                   aria-label="Coloque uma URL para usarmos de capa"
                 />
               </div>
-              <div>
-                <input
-                  placeholder="Coloque um link de acesso a comunidade"
-                  name="link"
-                  aria-label="Coloque um link de acesso a comunidade"
-                  
-                />
-              </div>
 
               <button>
                 Criar comunidade
@@ -187,7 +176,7 @@ export default function Home(props) {
 
                 const scrap = {
                   text: dadosDoForm.get("text"),
-                  creatorSlug: usuarioAleatorio,
+                  creatorSlug: githubUser,
                 };
 
                 fetch('/api/recados', {
@@ -235,7 +224,7 @@ export default function Home(props) {
             <ProfileRelationsBox title="Meus Seguidores" section={seguidores} caminho="/seguidores"/>
             <ProfileRelationsBox title="Seguindo" section={seguindo} caminho="/seguindo"/>
             
-            <ProfileRelationsBoxLink title="Comunidades" section={comunidades} caminho="/comunidades"/>
+            <ProfileRelationsBox title="Comunidades" section={comunidades} caminho="/comunidades"/>
             
         </div>
       </MainGrid>
@@ -265,9 +254,7 @@ export async function getServerSideProps(context) {
 
   const { githubUser } = jwt.decode(token);
   return {
-    props: {
-      githubUser
-    }, // will be passed to the page component as props
+    props: {}, 
   }
 }
 

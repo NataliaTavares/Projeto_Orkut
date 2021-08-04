@@ -1,6 +1,5 @@
 import { SiteClient } from 'datocms-client';
 
-
 export default async function recebedorDeRequests(request, response) {
     if(request.method === 'POST') {
         const TOKEN = process.env.FULL_ACCESS_API_TOKEN;                
@@ -8,7 +7,7 @@ export default async function recebedorDeRequests(request, response) {
         
        
         const registroCriado = await client.items.create({
-            itemType: process.env.ID_MODEL, 
+            itemType: process.env.ID_MODEL_COMUNIDADE, 
             ...request.body,
            
         })

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const BoxOpcao = styled.div`
   background: #FFFFFF;
   border-radius: 8px;
-  height: 900px;
   padding: 16px;
 
   /* CSS Pré-Pronto */

@@ -1,8 +1,10 @@
 import { ProfileRelationsBoxWrapper } from '../ProfileRelations';
+import Link from 'next/link'
 import BoxLink from "../boxLink";
 
 
-function ProfileRelationsBox(props) {
+
+function ProfileRelationsBoxLink(props) {
   return (
     <ProfileRelationsBoxWrapper>
       <h2 className="smallTitle">
@@ -16,7 +18,7 @@ function ProfileRelationsBox(props) {
           if (index <= 5) {
             return (
               <li key={item.id}>
-                <a href={`${item.category}${item.title}`} target="_blank">  
+                <a href={item.link} target="_blank">  
                   <img src={item.imageUrl} />
                   <span>{item.title}</span>
                 </a>
@@ -30,4 +32,4 @@ function ProfileRelationsBox(props) {
   );
 }
 
-export default ProfileRelationsBox;
+export default ProfileRelationsBoxLink;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import NextLink from 'next/link';
 
+
  
 
 
@@ -27,7 +28,7 @@ export function AlurakutMenu({ githubUser }) {
   return (
     <AlurakutMenu.Wrapper isMenuOpen={isMenuOpen}>
       <div className="container">
-        <AlurakutMenu.Logo src={`${BASE_URL}/logo.svg`} />
+        {/* <AlurakutMenu.Logo src={`${BASE_URL}/logo.svg`} /> */}
 
         <nav style={{ flex: 1 }}>
           {[{ name: 'Inicio', slug: '/'}, {name: 'Seguindo', slug: '/seguindo'}, {name: 'Comunidades', slug: '/comunidades'}].map((menuItem) => (
@@ -177,7 +178,7 @@ function AlurakutMenuProfileSidebar({ githubUser }) {
         <img src={`https://github.com/${githubUser}.png`} style={{ borderRadius: '8px' }} />
         <hr />
         <p>
-          <a  className="boxLink" href={`https://github.com/${githubUser}`} >
+          <a  className="boxLink" href={`https://github.com/${githubUser}`} target="_blank">
             @{githubUser}
           </a>
         </p>
@@ -198,28 +199,28 @@ export function AlurakutProfileSidebarMenuDefault({githubUser}) {
       <nav>
         <a href="/">
           <img src={`${BASE_URL}/icons/book.svg`} />
-            Inicio
+            Chat
         </a>
-        <a href='/perfil' target="_blank">
+        <a href='/' target="_blank">
           <img src={`${BASE_URL}/icons/user.svg`} />
             Perfil
         </a>
-        <a href="/">
+        {/* <a href="/">
           <img src={`${BASE_URL}/icons/book.svg`} />
             Recados
-          </a>
-        <a href="/">
+          </a> */}
+        {/* <a href="/">
           <img src={`${BASE_URL}/icons/camera.svg`} />
             Fotos
-          </a>
-        <a href="/">
+          </a> */}
+        <a href="/recados">
           <img src={`${BASE_URL}/icons/sun.svg`} />
-            Depoimentos
+            Recados
           </a>
       </nav>
       <hr />
       <nav>
-        <a href="https://github.com/">
+        <a href="https://github.com/explore" target="_blank">
           <img src={`${BASE_URL}/icons/plus.svg`} />
             GitHub Trends
           </a>
@@ -256,10 +257,10 @@ export function OrkutNostalgicIconSet(props) {
     <OrkutNostalgicIconSet.List>
       {[
         { name: 'Recados', slug: 'recados', icon: 'book' },
-        { name: 'Fotos', slug: 'fotos', icon: 'camera' },
-        { name: 'Videos', slug: 'videos', icon: 'video-camera' },
-        { name: 'Fãs', slug: 'fas', icon: 'star' },
-        { name: 'Mensagens', slug: 'mensagens', icon: 'email' },
+        { name: 'Comunidades', slug: 'fotos', icon: 'camera' },
+        { name: 'Seguidores', slug: 'videos', icon: 'video-camera' },
+        // { name: 'Fãs', slug: 'fas', icon: 'star' },
+        // { name: 'Mensagens', slug: 'mensagens', icon: 'email' },
       ].map(({ name, slug, icon }) => (
         <li key={`orkut__icon_set__${slug}`}>
           <span style={{ gridArea: 'title' }} className="OrkutNostalgicIconSet__title">
