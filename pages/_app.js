@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { AlurakutStyles } from '../src/lib/AlurakutCommons';
 
@@ -42,6 +43,13 @@ export default function App({ Component, pageProps }) {
      
       <GlobalStyle />
       <ThemeProvider theme={theme}>
+        <Head>
+          <title>Masterkut</title>
+              <link
+                rel="icon"
+                href="https://uc-emoji.azureedge.net/orig/1b/226304666f25b257960f88e692873c.png"
+              />
+        </Head>
         <Component {...pageProps} />
       </ThemeProvider>
     </>

@@ -14,7 +14,6 @@ const MainGridOpcao = styled.main`
   }
   @media(min-width: 860px) {
     max-width: 900px;
-    max-height: 1000px;
     display: grid;
     grid-template-areas: 
       "profileArea welcomeArea ";

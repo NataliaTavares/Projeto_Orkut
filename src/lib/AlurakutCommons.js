@@ -31,7 +31,7 @@ export function AlurakutMenu({ githubUser }) {
         {/* <AlurakutMenu.Logo src={`${BASE_URL}/logo.svg`} /> */}
 
         <nav style={{ flex: 1 }}>
-          {[{ name: 'Inicio', slug: '/'}, {name: 'Seguindo', slug: '/seguindo'}, {name: 'Comunidades', slug: '/comunidades'}].map((menuItem) => (
+          {[{ name: 'Inicio', slug: '/'}, {name: 'Seguidores', slug: '/seguidores'}, {name: 'Seguindo', slug: '/seguindo'}, {name: 'Comunidades', slug: '/comunidades'}].map((menuItem) => (
             <Link key={`key__${menuItem.name.toLocaleLowerCase()}`} href={`${menuItem.slug.toLocaleLowerCase()}`}>
               {menuItem.name}
             </Link>
@@ -197,26 +197,28 @@ export function AlurakutProfileSidebarMenuDefault({githubUser}) {
   return (
     <AlurakutProfileSidebarMenuDefault.Wrapper >
       <nav>
-        <a href="/">
-          <img src={`${BASE_URL}/icons/book.svg`} />
-            Chat
-        </a>
-        <a href='/' target="_blank">
+        <a href='/'>
           <img src={`${BASE_URL}/icons/user.svg`} />
             Perfil
         </a>
-        {/* <a href="/">
-          <img src={`${BASE_URL}/icons/book.svg`} />
-            Recados
-          </a> */}
-        {/* <a href="/">
-          <img src={`${BASE_URL}/icons/camera.svg`} />
-            Fotos
-          </a> */}
+        <a href="/seguidores">
+          <img src={`${BASE_URL}/icons/star.svg`} />
+            Seguidores
+        </a>
+        
+        <a href="/seguindo">
+          <img src={`${BASE_URL}/icons/star.svg`} />
+            Seguindo
+          </a>
         <a href="/recados">
           <img src={`${BASE_URL}/icons/sun.svg`} />
             Recados
-          </a>
+        </a>  
+        <a href="/comunidades">
+          <img src={`${BASE_URL}/icons/book.svg`} />
+            Comunidades
+        </a>
+       
       </nav>
       <hr />
       <nav>
@@ -256,11 +258,11 @@ export function OrkutNostalgicIconSet(props) {
   return (
     <OrkutNostalgicIconSet.List>
       {[
-        { name: 'Recados', slug: 'recados', icon: 'book' },
-        { name: 'Comunidades', slug: 'fotos', icon: 'camera' },
-        { name: 'Seguidores', slug: 'videos', icon: 'video-camera' },
-        // { name: 'Fãs', slug: 'fas', icon: 'star' },
-        // { name: 'Mensagens', slug: 'mensagens', icon: 'email' },
+        { name: 'Recados', slug: 'recados', icon: 'sun' },
+        { name: 'Comunidades', slug: 'comunidades', icon: 'book' },
+        { name: 'Seguidores', slug: 'seguidores', icon: 'star' },
+        { name: 'Seguindo', slug: 'seguindo', icon: 'star' },
+        
       ].map(({ name, slug, icon }) => (
         <li key={`orkut__icon_set__${slug}`}>
           <span style={{ gridArea: 'title' }} className="OrkutNostalgicIconSet__title">
@@ -321,6 +323,7 @@ OrkutNostalgicIconSet.List = styled.ul`
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      margin-bottom: 15px;
       .OrkutNostalgicIconSet__iconSample {
         margin-right: 7px;
       }

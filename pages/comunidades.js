@@ -4,11 +4,9 @@ import jwt from 'jsonwebtoken';
 import MainGridOpcao from '../src/components/MainGrid/opcao'
 import ProfileSidebar from '../src/components/ProfileSidebar'
 import { AlurakutMenu,} from '../src/lib/AlurakutCommons';
-import ProfileRelationsBoxWrapperOpcao from '../src/components/ProfileRelationsBox/opcao';
 import BoxOpcao from '../src/components/Box/opcao';
-
-
-
+import Box from '../src/components/Box'
+import ProfileRelationsBoxLink from '../src/components/ProfileRelationsBox/profileLinkComunidade';
 
 export default function comunidades(props) {
   const usuarioAleatorio = props.githubUser;
@@ -28,6 +26,7 @@ export default function comunidades(props) {
           id 
           title
           imageUrl
+          link
           creatorSlug
         }
       }` })
@@ -53,10 +52,70 @@ export default function comunidades(props) {
             <h1 className="title">
               Comunidades 
             </h1>
-            <ProfileRelationsBoxWrapperOpcao title="Comunidades" section={comunidades} caminho="/comunidades"/>
-          </BoxOpcao>
-              
-        </div> 
+            <ProfileRelationsBoxLink title="Comunidades" section={comunidades} caminho="/comunidades"/>
+          </BoxOpcao> 
+          <Box>
+            <h2 className="subTitle">O que você deseja fazer?</h2>
+            <form onSubmit={function handleCriaComunidade(e) {
+                e.preventDefault();
+                const dadosDoForm = new FormData(e.target);
+
+                console.log('Campo: ', dadosDoForm.get('title'));
+                console.log('Campo: ', dadosDoForm.get('image'));
+
+                const comunidade = {
+                  title: dadosDoForm.get('title'),
+                  imageUrl: dadosDoForm.get('image'),
+                  link: dadosDoForm.get("link"),
+                  creatorSlug: usuarioAleatorio,
+                }
+
+                fetch('/api/comunidades', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(comunidade)
+                })
+                .then(async (response) => {
+                  const dados = await response.json();
+                  console.log(dados.registroCriado);
+                  const comunidade = dados.registroCriado;
+                  const comunidadesAtualizadas = [...comunidades, comunidade];
+                  setComunidades(comunidadesAtualizadas)
+                })
+            }}>
+              <div>
+                <input 
+                  placeholder="Qual vai ser o nome da sua comunidade?"
+                  name="title"
+                  aria-label="Qual vai ser o nome da sua comunidade?"
+                  type="text"
+                  />
+              </div>
+              <div>
+                <input  
+                  placeholder="Coloque uma URL para usarmos de capa"
+                  name="image"
+                  aria-label="Coloque uma URL para usarmos de capa"
+                />
+              </div>
+              <div>
+                <input 
+                  placeholder="Coloque um link de acesso a comunidade"
+                  name="link"
+                  aria-label="Coloque um link de acesso a comunidade"
+                />
+              </div>
+
+              <button>
+                Criar comunidade
+              </button>
+              <button type="reset" value="Limpar">Limpar</button>
+            </form>
+          </Box>          
+        </div>
+        
           
       </MainGridOpcao>
     </>

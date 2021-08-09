@@ -11,18 +11,20 @@ export default function ScrapsList({ scraps, boxTitle }) {
         </a>
       </h2>
       <ul>
-        {scraps.map((scrap) => {
-          return (
-            <li key={scrap.id}>
-              <Link href={`/profile/${scrap.creatorSlug}`} passHref>
-                <a>
-                  <img src={`https://github.com/${scrap.creatorSlug}.png`} />
-                  <span>{scrap.creatorSlug}</span>
-                </a>
-              </Link>
-              <p>{scrap.text}</p>
-            </li>
-          );
+        {scraps.map((scrap,index) => {
+          if (index <=3) {
+            return (
+              <li key={scrap.id}>
+                <Link href={`/profile/${scrap.creatorSlug}`} passHref>
+                  <a>
+                    <img src={`https://github.com/${scrap.creatorSlug}.png`} />
+                    <span>{scrap.creatorSlug}</span>
+                  </a>
+                </Link>
+                <p>{scrap.text}</p>
+              </li>
+            );
+          }  
         })}
       </ul>
     </>

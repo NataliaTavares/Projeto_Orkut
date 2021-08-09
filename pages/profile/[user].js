@@ -14,12 +14,6 @@ import ScrapsBox from "../../src/components/boxRecados";
 import ScrapsList from "../../src/components/listaRecados";
 import BoxLink from "../../src/components/boxLink";
 
-const ICONS_SETUP = {
-  recados: 5,
-  confiavel: 3,
-  legal: 3,
-  sexy: 2
-};
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -113,7 +107,16 @@ export default function ProfilePage() {
               local={username.location}
             />
 
-            <OrkutNostalgicIconSet {...ICONS_SETUP}/>
+            <OrkutNostalgicIconSet 
+               seguidores={seguidores.length}
+               seguindo={seguindo.length}
+               comunidades={comunidades.length}
+               recados={scraps.length}
+               confiavel="3"
+               legal="3"
+               sexy="3"
+             />
+
           </Box>
 
           <Box>

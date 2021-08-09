@@ -7,9 +7,6 @@ import { AlurakutMenu,} from '../src/lib/AlurakutCommons';
 import ProfileRelationsBoxWrapperOpcao from '../src/components/ProfileRelationsBox/opcao';
 import BoxOpcao from '../src/components/Box/opcao';
 
-
-
-
 export default function sobre_nos(props) {
   const usuarioAleatorio = props.githubUser;
   const [seguidores, setSeguidores] = React.useState([]);
@@ -21,7 +18,7 @@ export default function sobre_nos(props) {
       .then(function (finalResult) {
         const seguidoresMap = finalResult.map(({ id, login, avatar_url }) => ({
           id: id,
-          name: login,
+          title: login,
           imageUrl: avatar_url,
           category: "https://github.com/",
           
@@ -55,8 +52,6 @@ export default function sobre_nos(props) {
   )
 }
 
-
-
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
   const token = cookies.USER_TOKEN;
@@ -81,6 +76,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       githubUser
-    }, // will be passed to the page component as props
+    }, 
   }
 }

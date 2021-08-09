@@ -14,16 +14,6 @@ import ScrapsList from "../src/components/listaRecados";
 import BoxLink from "../src/components/boxLink";
 import ProfileRelationsBoxLink from '../src/components/ProfileRelationsBox/profileLinkComunidade';
 
-
-
-const ICONS_SETUP = {
-  recados: 5,
-  confiavel: 3,
-  legal: 3,
-  sexy: 2
-};
-
-
 export default function Home(props) {
   const usuarioAleatorio = props.githubUser;
   const [username, setUsername] = React.useState([]);
@@ -115,7 +105,17 @@ export default function Home(props) {
               local={username.location}
             />
 
-            <OrkutNostalgicIconSet {...ICONS_SETUP}/>
+            <OrkutNostalgicIconSet 
+               seguidores={seguidores.length}
+               seguindo={seguindo.length}
+               comunidades={comunidades.length}
+               recados={scraps.length}
+               confiavel="3"
+               legal="3"
+               sexy="3"
+             />
+            
+            
           </Box>
 
           <Box>
@@ -150,7 +150,7 @@ export default function Home(props) {
                 })
             }}>
               <div>
-                <input
+                <input 
                   placeholder="Qual vai ser o nome da sua comunidade?"
                   name="title"
                   aria-label="Qual vai ser o nome da sua comunidade?"
@@ -158,24 +158,24 @@ export default function Home(props) {
                   />
               </div>
               <div>
-                <input
+                <input  
                   placeholder="Coloque uma URL para usarmos de capa"
                   name="image"
                   aria-label="Coloque uma URL para usarmos de capa"
                 />
               </div>
               <div>
-                <input
+                <input 
                   placeholder="Coloque um link de acesso a comunidade"
                   name="link"
                   aria-label="Coloque um link de acesso a comunidade"
-                  
                 />
               </div>
 
               <button>
                 Criar comunidade
               </button>
+              <button type="reset" value="Limpar">Limpar</button>
             </form>
           </Box>
 
@@ -214,6 +214,7 @@ export default function Home(props) {
                   />
                 </div>
                 <button>Enviar recado</button>
+                <button type="reset" value="Limpar">Limpar</button>
               </form>
 
           </Box>
@@ -232,7 +233,7 @@ export default function Home(props) {
           className="profileRelationsArea" 
           style={{ gridArea: 'profileRelationsArea' }}>
 
-            <ProfileRelationsBox title="Meus Seguidores" section={seguidores} caminho="/seguidores"/>
+            <ProfileRelationsBox title="Meus Seguidores" section={seguidores} caminho="/seguidores" seguidores={seguidores} />
             <ProfileRelationsBox title="Seguindo" section={seguindo} caminho="/seguindo"/>
             
             <ProfileRelationsBoxLink title="Comunidades" section={comunidades} caminho="/comunidades"/>
@@ -267,7 +268,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       githubUser
-    }, // will be passed to the page component as props
+    }, 
   }
 }
 

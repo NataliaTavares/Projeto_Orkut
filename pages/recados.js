@@ -7,10 +7,7 @@ import { AlurakutMenu,} from '../src/lib/AlurakutCommons';
 import Box from '../src/components/Box';
 import DatoCMSService from "../src/api/datocmsService";
 import ScrapsBox from "../src/components/boxRecados";
-import ScrapsList from "../src/components/listaRecados";
-
-
-
+import ScrapsListOpcao from "../src/components/listaRecados/opcao";
 
 export default function recados(props) {
   const usuarioAleatorio = props.githubUser;
@@ -37,7 +34,7 @@ export default function recados(props) {
 
 
           <ScrapsBox>
-            <ScrapsList
+            <ScrapsListOpcao
               boxTitle={"Recados"}
               scraps={scraps}     
             />
@@ -90,8 +87,6 @@ export default function recados(props) {
     
   )
 }
-
-
 
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)

@@ -15,8 +15,8 @@ function ProfileRelationsBox(props) {
         {props.section.map((item, index) => {
           if (index <= 5) {
             return (
-              <li key={item.id}>
-                <a href={`${item.category}${item.title}`} target="_blank">  
+              <li key={item.id}>  
+                <a href={`/profile/${item.title}`}>  
                   <img src={item.imageUrl} />
                   <span>{item.title}</span>
                 </a>
@@ -31,3 +31,7 @@ function ProfileRelationsBox(props) {
 }
 
 export default ProfileRelationsBox;
+
+
+                
+            

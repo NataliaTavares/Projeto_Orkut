@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { ProfileRelationsBoxWrapperOpcao } from '../ProfileRelations/opcao';
 
 
@@ -10,7 +9,7 @@ function ProfileRelationsBoxOpcao(props) {
           if (index <=41) {
             return (
               <li key={item.id}>
-                <a href={`${item.category}${item.name}`} target="_blank">   
+               <a href={`/profile/${item.title}`}>  
                   <img src={item.imageUrl} />
                   <span>{item.title}</span>
                 </a>

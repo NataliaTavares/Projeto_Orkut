@@ -5,34 +5,13 @@ export const ProfileRelationsBoxWrapperOpcao = styled(Box)`
   ul {
     display: grid;  
     grid-gap: 15px;
-    grid-template-columns: 100px 100px 100px 100px 100px 100px; 
-    max-height: 220px;
+    grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
     list-style: none;
-  }
-  @media(min-width: 860px){
-    ul{
-      grid-template-columns: 100px 100px 100px 100px 100px
-    }  
-  }
-  @media(min-width: 540px) and (max-width:859px) {
-    ul{
-      grid-template-columns: 90px 90px 90px 90px 
-    } 
-  }
-  @media(min-width: 321px) and (max-width: 539px){
-    ul{
-      grid-template-columns: 80px 80px 80px
-    }   
-  }
-  @media (min-width: 286px) and (max-width: 320px){
-    ul{
-      grid-template-columns: 65px 65px 65px
-    }  
-  }
-  @media(max-width: 285px){
-    ul{
-      grid-template-columns: 50px 50px 50px
-    }  
+  }  
+  @media(max-width: 500px){
+    ul {
+      grid-template-columns:  1fr 1fr 1fr;
+    }
   }
 
   img {
