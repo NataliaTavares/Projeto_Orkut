@@ -233,7 +233,7 @@ export default function Home(props) {
           className="profileRelationsArea" 
           style={{ gridArea: 'profileRelationsArea' }}>
 
-            <ProfileRelationsBox title="Meus Seguidores" section={seguidores} caminho="/seguidores" seguidores={seguidores} />
+            <ProfileRelationsBox title="Meus Seguidores" section={seguidores} caminho="/seguidores" />
             <ProfileRelationsBox title="Seguindo" section={seguindo} caminho="/seguindo"/>
             
             <ProfileRelationsBoxLink title="Comunidades" section={comunidades} caminho="/comunidades"/>

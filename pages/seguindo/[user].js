@@ -1,46 +1,49 @@
 import React from 'react';
+import { useRouter } from "next/router";
 import nookies from 'nookies';
 import jwt from 'jsonwebtoken';
-import MainGridOpcao from '../src/components/MainGrid/opcao'
-import ProfileSidebar from '../src/components/ProfileSidebar'
-import { AlurakutMenu,} from '../src/lib/AlurakutCommons';
-import ProfileRelationsBoxWrapperOpcao from '../src/components/ProfileRelationsBox/opcao';
-import BoxOpcao from '../src/components/Box/opcao';
+import MainGridOpcao from '../../src/components/MainGrid/opcao'
+import ProfileSidebar from '../../src/components/ProfileSidebar'
+import { AlurakutMenu,} from '../../src/lib/AlurakutCommons';
+import ProfileRelationsBoxWrapperOpcao from '../../src/components/ProfileRelationsBox/opcao';
+import BoxOpcao from '../../src/components/Box/opcao';
 
-export default function seguidores(props) {
-  const usuarioAleatorio = props.githubUser;
-  const [seguidores, setSeguidores] = React.useState([]);
+export default function seguindo(props) {
+  const router = useRouter();
+  const { user } = router.query;
+  const githubUser = user;
+  const [seguindo, setSeguindo] = React.useState([]);
 
   React.useEffect(function() {
     // GET
-    fetch(`https://api.github.com/users/${usuarioAleatorio}/followers`)
+    fetch(`https://api.github.com/users/${githubUser}/following`)
       .then((response) => response.json())
       .then(function (finalResult) {
-        const seguidoresMap = finalResult.map(({ id, login, avatar_url }) => ({
+        const seguindoMap = finalResult.map(({ id, login, avatar_url }) => ({
           id: id,
           title: login,
           imageUrl: avatar_url,
           category: "https://github.com/",
           
         }));
-        return setSeguidores(seguidoresMap);
+        return setSeguindo(seguindoMap);
       });
 }, [])    
 
 
   return (
     <>
-      <AlurakutMenu githubUser={usuarioAleatorio} />
+      <AlurakutMenu githubUser={githubUser} />
       <MainGridOpcao>
         <div className="profileArea" style={{ gridArea: 'profileArea' }}> 
-          <ProfileSidebar  githubUser={usuarioAleatorio} />
+          <ProfileSidebar  githubUser={githubUser} />
         </div>
         <div className="welcomeArea" style={{ gridArea: 'welcomeArea' }}>
           <BoxOpcao>
             <h1 className="title">
-              Seguidores 
+              Seguindo
             </h1>
-            <ProfileRelationsBoxWrapperOpcao title="Seguidores" section={seguidores}/>
+            <ProfileRelationsBoxWrapperOpcao title="Seguindo" section={seguindo}/>
           </BoxOpcao>
               
         </div> 

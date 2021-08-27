@@ -6,14 +6,13 @@ import MainGrid from '../../src/components/MainGrid'
 import ProfileSidebar from '../../src/components/ProfileSidebar'
 import Box from '../../src/components/Box'
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../../src/lib/AlurakutCommons';
-import ProfileRelationsBox from "../../src/components/ProfileRelationsBox";
+import ProfileRelationsBox from "../../src/components/ProfileRelationsBox/index";
 import ProfileBio from "../../src/components/ProfileBio";
 import GitHubService from "../../src/api/githubService";
 import DatoCMSService from "../../src/api/datocmsService";
 import ScrapsBox from "../../src/components/boxRecados";
 import ScrapsList from "../../src/components/listaRecados";
 import BoxLink from "../../src/components/boxLink";
-
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -222,10 +221,10 @@ export default function ProfilePage() {
 
         <div 
           className="profileRelationsArea" 
-          style={{ gridArea: 'profileRelationsArea' }}>
-
-            <ProfileRelationsBox title="Meus Seguidores" section={seguidores} caminho="/seguidores"/>
-            <ProfileRelationsBox title="Seguindo" section={seguindo} caminho="/seguindo"/>
+          style={{ gridArea: 'profileRelationsArea' }}>  
+                                                                                    
+            <ProfileRelationsBox title="Meus Seguidores" section={seguidores} caminho={`/seguidores/${githubUser}`} />
+            <ProfileRelationsBox title="Seguindo" section={seguindo} caminho={`/seguindo/${githubUser}`}/>
             
             <ProfileRelationsBox title="Comunidades" section={comunidades} caminho="/comunidades"/>
             

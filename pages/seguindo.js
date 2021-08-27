@@ -7,7 +7,7 @@ import { AlurakutMenu,} from '../src/lib/AlurakutCommons';
 import ProfileRelationsBoxWrapperOpcao from '../src/components/ProfileRelationsBox/opcao';
 import BoxOpcao from '../src/components/Box/opcao';
 
-export default function sobre_nos(props) {
+export default function seguindo(props) {
   const usuarioAleatorio = props.githubUser;
   const [seguindo, setSeguindo] = React.useState([]);
 
@@ -40,7 +40,7 @@ export default function sobre_nos(props) {
             <h1 className="title">
               Seguindo 
             </h1>
-            <ProfileRelationsBoxWrapperOpcao title="Seguindo" section={seguindo} caminho="/seguindo"/>
+            <ProfileRelationsBoxWrapperOpcao title="Seguindo" section={seguindo}/>
           </BoxOpcao>
               
         </div> 
